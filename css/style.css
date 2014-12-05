@@ -8,9 +8,13 @@
     margin: 0;
     padding: 0;
 }
-
+@font-face {
+    src: url("./28 Days Later.ttf");
+    font-family: "clock";
+}
 body {
     /* background-image: url(/img/1653588.jpg); */
+    
     background-size: cover;
     -webkit-background-size: cover;
     background-attachment: fixed;
@@ -20,27 +24,39 @@ body {
     line-height: 1.42857143;
     color: #333;
 }
-
 div#topSites {
     height: 100%;
     width: 100%;
     text-align: center;
     background-color: rgba(255, 255, 255, 0.6);
     -webkit-box-shadow: 0px 5px 10px 0px rgba(50, 50, 50, 0.7);
-    box-shadow:         0px 5px 10px 0px rgba(50, 50, 50, 0.7);
+    box-shadow: 0px 5px 10px 0px rgba(50, 50, 50, 0.7);
 }
-
 ul#topSites {
-
-/*    max-height: 3em;*/
-
+    /*    max-height: 3em;*/
 }
-
+div#time {
+    position: fixed;
+    right: 10px;
+    font-family: "clock";
+    text-shadow: 1px 1px white, -1px -1px #666;
+    text-align: right;
+}
+div#clock_div {
+    font-size: 10em;
+    height: 160px;
+    color: #951828;
+    
+}
+div#date_div {
+    font-size: 3em;
+    top: 200px;
+    color: #8527FA;
+}
 ul#topSites li {
     display: inline;
     margin: 0.4em;
 }
-
 ul#topSites li a {
     text-decoration: none;
     text-align: center;
@@ -48,14 +64,12 @@ ul#topSites li a {
     line-height: 3em;
     text-decoration-color: #FFFFFF;
 }
-
 a.top {
     border: 1px solid rgba(0, 0, 0, 0);
     color: #3e4558;
     padding: 0.3em;
     overflow: hidden;
 }
-
 a.top:hover {
     color: #ffffff;
     overflow: visible;
