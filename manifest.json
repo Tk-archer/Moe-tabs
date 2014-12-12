@@ -7,8 +7,7 @@
         "topSites",
         "storage",
         "*://desk.zol.com.cn/showpic/*",
-        "*://*.baidu.com/*",
-         "http://sneezryworks.sinaapp.com/ip.php"
+        "*://dn-staticfile.qbox.me/font-awesome/*"
 
     ],
     "chrome_url_overrides": {
