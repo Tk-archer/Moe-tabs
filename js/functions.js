@@ -71,19 +71,14 @@ getActive=function() {
     type=localStorage["type"]?localStorage["type"]:3;
         switch(type){
             case '1':
-                return $('#one');
-                break;
+                return $('#one'); 
             case '2':
-                 return $('#rand');
-                break;
+                 return $('#rand');          
             case '3':
                  return $('#nomal');
-                break;
             default:
                     localStorage["type"]=type;
-                    return $('#nomal');
-                    break;
-            
+                    return $('#nomal');          
         }
 };
 
@@ -127,7 +122,7 @@ function init() {
 
         $('ul#topSites').append(sites);
         var sdd=getActive();
-        var sd='<i class=" am-icon-check-square"></i>'
+        var sd='<i class=" am-icon-check-square"></i>';
         sdd.addClass("am-active");
         sdd.append(sd);
     });
@@ -206,7 +201,7 @@ $(document).ready(function() {
                 localStorage["img"] = reader.result;
                 location.reload();
                 
-            }
+            };
         };
     });
 
