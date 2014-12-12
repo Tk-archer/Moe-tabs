@@ -13,11 +13,11 @@ setimg = function(image) {
 bgimg = function() {
 
     type = localStorage["type"] ? localStorage["type"] : 3;
-    if (type == 1) {
+    if (type === 1) {
 
         setimg(localStorage["img"]);
 
-    } else if (type == 2) {
+    } else if (type === 2) {
 
         var rande = 386 + Math.floor(Math.random() * 14);
         var urls = "http://desk.zol.com.cn/showpic/1920x1080_50" + rande + "_14.html";
@@ -31,7 +31,7 @@ bgimg = function() {
             dateType: "html"
         });
 
-    } else if (type == 3) {
+    } else if (type === 3) {
 
         var images = ["001.jpg", "002.jpg", "003.jpg", "004.jpg", "005.jpg", "006.jpg", "007.jpg", "008.jpg"];
         var rands = "/img/bg/" + images[Math.floor(Math.random() * images.length)];
@@ -124,7 +124,7 @@ $(document).ready(function() {
     var fileList;
     $('#imgurl').change(function(argument) {
         fileList = document.getElementById('imgurl').files[0];
-        if (fileList.type.indexOf("image") != -1) {
+        if (fileList.type.indexOf("image") !== -1) {
             imgview(fileList);
         } else {
             fileList = "";
@@ -152,7 +152,7 @@ $(document).ready(function() {
         e.preventDefault(); //取消默认浏览器拖拽效果 
         fileList = e.dataTransfer.files[0]; //获取文件对象 
 
-        if (fileList.type.indexOf("image") != -1) {
+        if (fileList.type.indexOf("image") !== -1) {
             imgview(fileList);
         } else {
             fileList = "";
@@ -168,7 +168,7 @@ $(document).ready(function() {
     });
 
     $('#up').mousedown(function() {
-        if (fileList.type.indexOf("image") != -1) {
+        if (fileList.type.indexOf("image") !== -1) {
             var reader = new FileReader();
             reader.readAsDataURL(fileList);
             reader.onload = function() {
