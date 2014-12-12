@@ -8,7 +8,7 @@ setimg = function(image) {
     $('body').css({
         'background-image': 'url(' + image + ')'
     });
-}
+};
 
 bgimg = function() {
 
@@ -47,7 +47,7 @@ setDate = function(el) {
     mon = mon >= 10 ? mon : ('0' + mon);
     el.innerHTML = y + "." + mon + "." + d;
     my_clock(document.getElementById('clock_div'), today);
-}
+};
 
 my_clock = function(argument, today) {
     var h = today.getHours();
@@ -58,15 +58,46 @@ my_clock = function(argument, today) {
         today = new Date();
         my_clock(argument, today);
     }, 10000);
-}
+};
 imgview = function(file) {
 
     var img = window.webkitURL.createObjectURL(file);
     var str = "<img src='" + img + "'>";
     $("#preview").html(str);
 
-}
+};
 
+getActive=function() {
+    type=localStorage["type"]?localStorage["type"]:3;
+        switch(type){
+            case '1':
+                return $('#one');
+                break;
+            case '2':
+                 return $('#rand');
+                break;
+            case '3':
+                 return $('#nomal');
+                break;
+            default:
+                    localStorage["type"]=type;
+                    return $('#nomal');
+                    break;
+            
+        }
+};
+
+changeButton=function  (el) {
+   var act=getActive();
+        var old=act.children("i")[0];
+        var news=old.cloneNode();
+        act.removeClass("am-active ");
+        old.remove();
+        el.addClass("am-active ");
+        el.append(news);
+        localStorage["type"]=el.val();
+        
+};
 function init() {
 
     chrome.topSites.get(function(topSitesArray) {
@@ -102,7 +133,7 @@ function init() {
     });
 
 
-}
+};
 
 /*chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     if (message[0] == "img") {
@@ -190,34 +221,3 @@ $(document).ready(function() {
     });
 });
 
-getActive=function() {
-    type=localStorage["type"]?localStorage["type"]:3;
-        switch(type){
-            case '1':
-                return $('#one');
-                break;
-            case '2':
-                 return $('#rand');
-                break;
-            case '3':
-                 return $('#nomal');
-                break;
-            default:
-                    localStorage["type"]=type;
-                    return $('#nomal');
-                    break;
-            
-        }
-}
-
-changeButton=function  (el) {
-   var act=getActive();
-        var old=act.children("i")[0];
-        var news=old.cloneNode();
-        act.removeClass("am-active ");
-        old.remove();
-        el.addClass("am-active ");
-        el.append(news);
-        localStorage["type"]=el.val();
-        
-}
