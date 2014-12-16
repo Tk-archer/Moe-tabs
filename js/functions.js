@@ -9,15 +9,14 @@ setimg = function(image) {
         'background-image': 'url(' + image + ')'
     });
 };
-
 bgimg = function() {
 
     type = localStorage["type"] ? localStorage["type"] : 3;
-    if (type === 1) {
+    if (type === '1') {
 
         setimg(localStorage["img"]);
 
-    } else if (type === 2) {
+    } else if (type === '2') {
 
         var rande = 386 + Math.floor(Math.random() * 14);
         var urls = "http://desk.zol.com.cn/showpic/1920x1080_50" + rande + "_14.html";
@@ -31,7 +30,7 @@ bgimg = function() {
             dateType: "html"
         });
 
-    } else if (type === 3) {
+    } else if (type === '3') {
 
         var images = ["001.jpg", "002.jpg", "003.jpg", "004.jpg", "005.jpg", "006.jpg", "007.jpg", "008.jpg"];
         var rands = "/img/bg/" + images[Math.floor(Math.random() * images.length)];
@@ -48,7 +47,6 @@ setDate = function(el) {
     el.innerHTML = y + "." + mon + "." + d;
     my_clock(document.getElementById('clock_div'), today);
 };
-
 my_clock = function(argument, today) {
     var h = today.getHours();
     var m = today.getMinutes();
@@ -64,9 +62,7 @@ imgview = function(file) {
     var img = window.webkitURL.createObjectURL(file);
     var str = "<img src='" + img + "'>";
     $("#preview").html(str);
-
 };
-
 getActive=function() {
     type=localStorage["type"]?localStorage["type"]:3;
         switch(type){
@@ -81,7 +77,6 @@ getActive=function() {
                     return $('#nomal');          
         }
 };
-
 changeButton=function  (el) {
    var act=getActive();
         var old=act.children("i")[0];
@@ -90,8 +85,7 @@ changeButton=function  (el) {
         old.remove();
         el.addClass("am-active ");
         el.append(news);
-        localStorage["type"]=el.val();
-        
+        localStorage["type"]=el.val();    
 };
 function init() {
 
@@ -126,8 +120,6 @@ function init() {
         sdd.addClass("am-active");
         sdd.append(sd);
     });
-
-
 };
 
 /*chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {

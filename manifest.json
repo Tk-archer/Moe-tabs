@@ -30,13 +30,5 @@
             "filesystem:*.png"
         ]
     }],
-    "offline_enabled": true,
-    "browser_action": {
-        "default_popup": "popup.html"
-    },
-    "icons": {
-        "16": "1.png"
-      
-    }
-
+    "offline_enabled": true
 }

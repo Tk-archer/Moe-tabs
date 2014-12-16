@@ -92,6 +92,7 @@ aside {
     right: 0;
     width: 300px;
     overflow: hidden;
+    z-index: -1;
    
 }
 /*
