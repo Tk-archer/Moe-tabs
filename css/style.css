@@ -24,7 +24,7 @@
 .main {
     background-size: cover;
     -webkit-background-size: cover;
-   width: 100%;
+    width: 100%;
     background-attachment: fixed;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
@@ -45,8 +45,8 @@ nav#topSites {
     width: 100%;
     text-align: center;
     background-color: rgba(255, 255, 255, 0.6);
-    -webkit-box-shadow: 0px 5px 10px 0px rgba(50, 50, 50, 0.7);
-    box-shadow: 0px 5px 10px 0px rgba(50, 50, 50, 0.7);
+    -webkit-box-shadow: 0 5px 10px 0 rgba(50, 50, 50, 0.7);
+    box-shadow: 0 5px 10px 0 rgba(50, 50, 50, 0.7);
 }
 ul#topSites {
     /*    max-height: 3em;*/
@@ -102,7 +102,7 @@ time css
 */
 
 div#time {
-    font-family: "clock";
+    font-family: "clock", sans-serif;
     text-shadow: 1px 1px white, -1px -1px #666;
     text-align: right;
     background-color: #fff;
@@ -135,9 +135,9 @@ overflow-y: scroll;
 }
 
 #option h2 {
-    font-family: "Segoe UI";
+    font-family: 'Segoe UI', sans-serif;
     background-color: rgba(255, 255, 255, 0.3);
-    -webkit-box-shadow: 0px 2px 5px 0px rgba(50, 50, 50, 0.3);
+    -webkit-box-shadow: 0 2px 5px 0 rgba(50, 50, 50, 0.3);
     padding-left: 10px;
     color: #6D5757;
 
@@ -153,7 +153,7 @@ drop_area
 
 div#drop_area {
     position: relative;
-    margin: 0px auto;
+    margin: 0 auto;
     width: 80%;
     background-color: #EAEAEA;
     border: 2px dashed #979494;
@@ -195,7 +195,7 @@ preview
 }
 #preview img {
     overflow: hidden;
-    width: 100%;
+    height: 100%;
 }
 #upbutton{
     margin-top: 10px;
@@ -215,7 +215,7 @@ div#select-group {
     margin: auto 10%;
     clear: both;
 }
-#rand {} #one {} .center {
+.center {
     text-align: center;
     margin: 20px 0;
 }

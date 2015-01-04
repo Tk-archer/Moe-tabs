@@ -9,13 +9,11 @@ setimg = function (image) {
         'background-image': 'url(' + image + ')'
     });
 };
-
 getimg = function () {
     var images = ["001.jpg", "002.jpg", "003.jpg", "004.jpg", "005.jpg", "006.jpg", "007.jpg", "008.jpg"];
     return "/img/bg/" + images[Math.floor(Math.random() * images.length)];
-    
-};
 
+};
 bgimg = function () {
 
     type = localStorage["type"] ? localStorage["type"] : 3;
@@ -49,7 +47,6 @@ bgimg = function () {
 
     }
 };
-
 setDate = function (el) {
     var today = new Date();
     var y = today.getFullYear();
@@ -59,7 +56,6 @@ setDate = function (el) {
     el.innerHTML = y + "." + mon + "." + d;
     my_clock(document.getElementById('clock_div'), today);
 };
-
 my_clock = function (argument, today) {
     var h = today.getHours();
     var m = today.getMinutes();
@@ -100,7 +96,7 @@ changeButton = function (el) {
     el.append(news);
     localStorage["type"] = el.val();
 };
-function init() {
+init=function(){
 
     chrome.topSites.get(function (topSitesArray) {
         // set background
@@ -137,20 +133,8 @@ function init() {
 
 init();
 
-
-$(document).ready(function () {
-    setDate(document.getElementById('date_div'));
-    var fileList;
-    $('#imgurl').change(function (argument) {
-        fileList = document.getElementById('imgurl').files[0];
-        if (fileList.type.indexOf("image") !== -1) {
-            imgview(fileList);
-        } else {
-            fileList = "";
-        }
-
-    });
-
+/*
+DropSetting= function () {
     $(document).on({
         dragleave: function (e) { //拖离
             e.preventDefault();
@@ -166,10 +150,10 @@ $(document).ready(function () {
         }
     });
 
-    var box = document.getElementById('drop_area'); //拖拽区域 
+    var box = document.getElementById('drop_area'); //拖拽区域
     box.addEventListener("drop", function (e) {
-        e.preventDefault(); //取消默认浏览器拖拽效果 
-        fileList = e.dataTransfer.files[0]; //获取文件对象 
+        e.preventDefault(); //取消默认浏览器拖拽效果
+        fileList = e.dataTransfer.files[0]; //获取文件对象
 
         if (fileList.type.indexOf("image") !== -1) {
             imgview(fileList);
@@ -177,6 +161,22 @@ $(document).ready(function () {
             fileList = "";
         }
     }, false);
+}
+*/
+$(document).ready(function () {
+    setDate(document.getElementById('date_div'));
+    var fileList;
+    $('#imgurl').change(function () {
+        fileList = document.getElementById('imgurl').files[0];
+        if (fileList.type.indexOf("image") !== -1) {
+            imgview(fileList);
+        } else {
+            fileList = "";
+        }
+
+    });
+
+
 
     $('#more').mousedown(function () {
         if ($("#option").css("display") === "none") {
@@ -199,7 +199,6 @@ $(document).ready(function () {
 
             };
         }
-        ;
     });
 
     $('#one').mousedown(function () {
