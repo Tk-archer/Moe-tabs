@@ -1,0 +1,54 @@
+
+<!--
+Created by Fszer on 2015/1/5 0005.
+
+--><!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewpoint" content="width=device-width">
+    <script src="./js/jquery-2.1.1.min.js"></script>
+    <script src="./js/functions.js"></script>
+    <link rel="stylesheet" href="./css/amazeui.css">
+    <link rel="stylesheet" href="./css/stb.css">
+  </head>
+  <body class="main">
+    <nav id="topSites">
+      <div id="topSites-innter">
+        <ul style="list-style: none;" id="topSites"></ul>
+      </div>
+    </nav>
+    <aside id="sidebar">
+      <div id="time">
+        <div id="clock_div"></div>
+        <div id="date_div"></div>
+      </div>
+      <div id="tab" class="am-g">
+        <div class="am-u-lg-4 am-u-sm-4 red"></div>
+        <div class="am-u-lg-4 am-u-sm-4 blue">
+          <button id="more" class="am-btn non am-btn-block">more</button>
+        </div>
+        <div class="am-u-lg-4 am-u-sm-4 green"></div>
+      </div>
+      <div id="option">
+        <article id="add-img">
+          <h2>上传自定义壁纸（一张限定）</h2>
+          <div id="drop_area">
+            <p>将图片拖拽到此区域</p>
+            <input id="imgurl" type="file">
+            <div id="preview"></div>
+          </div>
+        </article>
+        <article id="setting">
+          <h2>选择壁纸替换模式</h2>
+          <div id="select-group" class="center am-btn-group">
+            <button id="one" value="1" class="am-btn am-btn-secondary am-btn-sm">自定义</button>
+            <button id="rand" value="2" class="am-btn am-btn-secondary am-btn-sm">言叶之庭</button>
+            <button id="nomal" value="3" class="am-btn am-btn-secondary am-btn-sm">默认</button>
+          </div>
+        </article>
+      </div>
+    </aside>
+  </body>
+</html>

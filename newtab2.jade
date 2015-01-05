@@ -1,0 +1,49 @@
+//
+   Created by Fszer on 2015/1/5 0005.
+
+doctype html
+html(lang="en")
+   head
+      title
+      meta(charset="UTF-8")
+      meta(name="viewpoint" content="width=device-width")
+      script(src="./js/jquery-2.1.1.min.js")
+      script(src="./js/functions.js")
+      link(rel="stylesheet" href="./css/amazeui.css" )/
+      link(rel="stylesheet" href="./css/stb.css" )/
+   body.main
+      nav#topSites
+         #topSites-innter
+            ul(style="list-style: none;" id="topSites")
+      aside#sidebar
+         #time
+            #clock_div
+            #date_div
+         #tab.am-g
+            - var ed ="am-u-lg-4 am-u-sm-4"
+            div( class=ed+" red")
+            div( class=ed+" blue")
+               button#more.am-btn.non.am-btn-block
+                  |more
+            div( class=ed+" green")
+         #option
+            article#add-img
+               h2
+                  |上传自定义壁纸（一张限定）
+               #drop_area
+                  p
+                     |将图片拖拽到此区域
+                  input#imgurl(type="file")
+                  #preview
+            article#setting
+               h2.
+                  选择壁纸替换模式
+               #select-group.center.am-btn-group
+                  - var classes = ['am-btn','am-btn-secondary','am-btn-sm']
+                  button#one(value="1" class=classes)
+                     |自定义
+                  button#rand(value="2" class=classes)
+                     |言叶之庭
+                  button#nomal(value="3" class=classes)
+                     |默认
+

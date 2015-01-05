@@ -1,6 +1,6 @@
 /**
- * 2014-05-19 23:22
- * Phoenix Nemo <i at phoenixlzx dot com>
+ * 2015-01-4 18:55
+ * Fszer
  * License MIT | http://opensource.org/licenses/MIT
  */
 
@@ -96,7 +96,7 @@ changeButton = function (el) {
     el.append(news);
     localStorage["type"] = el.val();
 };
-init=function(){
+init = function () {
 
     chrome.topSites.get(function (topSitesArray) {
         // set background
@@ -134,35 +134,35 @@ init=function(){
 init();
 
 /*
-DropSetting= function () {
-    $(document).on({
-        dragleave: function (e) { //拖离
-            e.preventDefault();
-        },
-        drop: function (e) { //拖后放
-            e.preventDefault();
-        },
-        dragenter: function (e) { //拖进
-            e.preventDefault();
-        },
-        dragover: function (e) { //拖来拖去
-            e.preventDefault();
-        }
-    });
+ DropSetting= function () {
+ $(document).on({
+ dragleave: function (e) { //拖离
+ e.preventDefault();
+ },
+ drop: function (e) { //拖后放
+ e.preventDefault();
+ },
+ dragenter: function (e) { //拖进
+ e.preventDefault();
+ },
+ dragover: function (e) { //拖来拖去
+ e.preventDefault();
+ }
+ });
 
-    var box = document.getElementById('drop_area'); //拖拽区域
-    box.addEventListener("drop", function (e) {
-        e.preventDefault(); //取消默认浏览器拖拽效果
-        fileList = e.dataTransfer.files[0]; //获取文件对象
+ var box = document.getElementById('drop_area'); //拖拽区域
+ box.addEventListener("drop", function (e) {
+ e.preventDefault(); //取消默认浏览器拖拽效果
+ fileList = e.dataTransfer.files[0]; //获取文件对象
 
-        if (fileList.type.indexOf("image") !== -1) {
-            imgview(fileList);
-        } else {
-            fileList = "";
-        }
-    }, false);
-}
-*/
+ if (fileList.type.indexOf("image") !== -1) {
+ imgview(fileList);
+ } else {
+ fileList = "";
+ }
+ }, false);
+ }
+ */
 $(document).ready(function () {
     setDate(document.getElementById('date_div'));
     var fileList;
@@ -175,7 +175,6 @@ $(document).ready(function () {
         }
 
     });
-
 
 
     $('#more').mousedown(function () {
