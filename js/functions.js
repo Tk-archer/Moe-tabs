@@ -67,7 +67,6 @@ my_clock = function (argument, today) {
     }, 10000);
 };
 imgview = function (file) {
-
     var img = window.webkitURL.createObjectURL(file);
     var str = "<img src='" + img + "'>";
     $("#preview").html(str);
@@ -200,14 +199,9 @@ $(document).ready(function () {
         }
     });
 
-    $('#one').mousedown(function () {
+    $('.act-btn').mousedown(function () {
         changeButton($(this));
     });
-    $('#rand').mousedown(function () {
-        changeButton($(this));
-    });
-    $('#nomal').mousedown(function () {
-        changeButton($(this));
-    });
+
 });
 

@@ -1,5 +1,15 @@
 //
    Created by Fszer on 2015/1/5 0005.
+//- functions
+mixin col-block(name,flag,text)
+   div(class="am-u-lg-4 am-u-sm-4"+name)
+      if flag
+         button#more.am-btn.non.am-btn-block
+            =text
+            
+mixin grou-btn(id,val,text)
+   button(id=id value=val class='am-btn am-btn-secondary am-btn-sm act-btn')
+      =text
 
 doctype html
 html(lang="en")
@@ -20,12 +30,9 @@ html(lang="en")
             #clock_div
             #date_div
          #tab.am-g
-            - var ed ="am-u-lg-4 am-u-sm-4"
-            div( class=ed+" red")
-            div( class=ed+" blue")
-               button#more.am-btn.non.am-btn-block
-                  |more
-            div( class=ed+" green")
+            +col-block(" red")
+            +col-block(" blue",1,"more")  
+            +col-block(" green")
          #option
             article#add-img
                h2
@@ -35,15 +42,14 @@ html(lang="en")
                      |将图片拖拽到此区域
                   input#imgurl(type="file")
                   #preview
+               #up-button.rig
+                  button#up(class="am-round am-btn am-btn-success am-btn-xs")
+                     |设 置
             article#setting
                h2.
                   选择壁纸替换模式
                #select-group.center.am-btn-group
-                  - var classes = ['am-btn','am-btn-secondary','am-btn-sm']
-                  button#one(value="1" class=classes)
-                     |自定义
-                  button#rand(value="2" class=classes)
-                     |言叶之庭
-                  button#nomal(value="3" class=classes)
-                     |默认
+                  +grou-btn("one",'1',"自定义 ")
+                  +grou-btn("rand",'2',"言叶之庭 ")
+                  +grou-btn("nomal",'3',"默认 ")
 
