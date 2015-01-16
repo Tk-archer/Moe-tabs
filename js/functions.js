@@ -71,10 +71,10 @@ my_clock = function (clock_div, today) {
 imgview = function (file) {
     var img = window.webkitURL.createObjectURL(file);
     var str = "<img src='" + img + "'>";
-    $("#preview").html(str);
+    $('#preview').html(str);
 };
 getActive = function () {
-    type = localStorage["type"] ? localStorage["type"] : 3;
+    var type = localStorage["type"] ? localStorage["type"] : 3;
     switch (type) {
         case '1':
             return $('#one');
