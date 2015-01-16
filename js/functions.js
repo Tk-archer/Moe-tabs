@@ -11,7 +11,7 @@ setimg = function (image) {
 };
 getimg = function () {
     var images = ["001.jpg", "002.jpg", "003.jpg", "004.jpg",
-                    "005.jpg", "006.jpg", "007.jpg", "008.jpg"];
+        "005.jpg", "006.jpg", "007.jpg", "008.jpg"];
     return "/img/bg/" +
         images[Math.floor(Math.random() * images.length)];
 
@@ -75,6 +75,7 @@ imgview = function (file) {
 };
 getActive = function () {
     var type = localStorage["type"] ? localStorage["type"] : 3;
+
     switch (type) {
         case '1':
             return $('#one');
@@ -97,34 +98,23 @@ changeButton = function (el) {
     el.append(news);
     localStorage["type"] = el.val();
 };
+setTopSites = function (topSitesArray) {
+    var sites = [],i;
+    var length = topSitesArray.length >= 8 ? 7 : topSitesArray.length;
+    for (i = 0; i <= length; i++) {
+        sites.push('<li><a href="' + topSitesArray[i].url +
+                    '" class="top">' + topSitesArray[i].title + '</a></li>');
+    }
+    return sites;
+};
 init = function () {
 
     chrome.topSites.get(function (topSitesArray) {
         // set background
         bgimg();
-        var sites = [],
-            i = 0;
 
-        if (topSitesArray.length >= 8) {
+        $('ul#topSites').append(setTopSites(topSitesArray));
 
-            for (i = 0; i <= 7; i++) {
-
-                sites.push('<li><a href="' + topSitesArray[i].url + '" class="top">' + topSitesArray[i].title + '</a></li>');
-
-            }
-
-        } else {
-
-            for (i = 0; i < topSitesArray.length; i++) {
-
-                sites.push('<li><a href="' + topSitesArray[i].url + '" class="top">' + topSitesArray[i].title + '</a></li>');
-
-            }
-
-        }
-
-
-        $('ul#topSites').append(sites);
         var act = getActive();
         var icon = '<i class=" am-icon-check-square"></i>';
         act.addClass("am-active");
@@ -149,10 +139,11 @@ $(document).ready(function () {
 
 
     $('#more').mousedown(function () {
-        if ("none" === $('#option').css("display")) {
-            $('#option').slideDown("fast");
+        var option = $('#option');
+        if ("none" === option.css("display")) {
+            option.slideDown("fast");
         } else {
-            $('#option').slideUp("fast");
+            option.slideUp("fast");
         }
     });
 
