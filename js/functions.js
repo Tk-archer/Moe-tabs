@@ -10,13 +10,15 @@ setimg = function (image) {
     });
 };
 getimg = function () {
-    var images = ["001.jpg", "002.jpg", "003.jpg", "004.jpg", "005.jpg", "006.jpg", "007.jpg", "008.jpg"];
-    return "/img/bg/" + images[Math.floor(Math.random() * images.length)];
+    var images = ["001.jpg", "002.jpg", "003.jpg", "004.jpg",
+                    "005.jpg", "006.jpg", "007.jpg", "008.jpg"];
+    return "/img/bg/" +
+        images[Math.floor(Math.random() * images.length)];
 
 };
 bgimg = function () {
 
-    type = localStorage["type"] ? localStorage["type"] : 3;
+    var type = localStorage["type"] ? localStorage["type"] : 3;
     if (type === '1') {
         var res;
         chrome.storage.local.get("img", function (result) {
@@ -47,23 +49,23 @@ bgimg = function () {
 
     }
 };
-setDate = function (el) {
+setDate = function (date_div) {
     var today = new Date();
     var y = today.getFullYear();
     var mon = today.getMonth() + 1;
     var d = today.getDate();
     mon = mon >= 10 ? mon : ('0' + mon);
-    el.innerHTML = y + "." + mon + "." + d;
+    date_div.innerHTML = y + "." + mon + "." + d;
     my_clock(document.getElementById('clock_div'), today);
 };
-my_clock = function (argument, today) {
+my_clock = function (clock_div, today) {
     var h = today.getHours();
     var m = today.getMinutes();
     m = m >= 10 ? m : ('0' + m);
-    argument.innerHTML = h + ":" + m;
+    clock_div.innerHTML = h + ":" + m;
     setTimeout(function () {
         today = new Date();
-        my_clock(argument, today);
+        my_clock(clock_div, today);
     }, 10000);
 };
 imgview = function (file) {
@@ -132,36 +134,6 @@ init = function () {
 
 init();
 
-/*
- DropSetting= function () {
- $(document).on({
- dragleave: function (e) { //拖离
- e.preventDefault();
- },
- drop: function (e) { //拖后放
- e.preventDefault();
- },
- dragenter: function (e) { //拖进
- e.preventDefault();
- },
- dragover: function (e) { //拖来拖去
- e.preventDefault();
- }
- });
-
- var box = document.getElementById('drop_area'); //拖拽区域
- box.addEventListener("drop", function (e) {
- e.preventDefault(); //取消默认浏览器拖拽效果
- fileList = e.dataTransfer.files[0]; //获取文件对象
-
- if (fileList.type.indexOf("image") !== -1) {
- imgview(fileList);
- } else {
- fileList = "";
- }
- }, false);
- }
- */
 $(document).ready(function () {
     setDate(document.getElementById('date_div'));
     var fileList;
@@ -177,7 +149,7 @@ $(document).ready(function () {
 
 
     $('#more').mousedown(function () {
-        if ($("#option").css("display") === "none") {
+        if ("none" === $('#option').css("display")) {
             $('#option').slideDown("fast");
         } else {
             $('#option').slideUp("fast");
