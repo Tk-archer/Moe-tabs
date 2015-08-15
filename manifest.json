@@ -7,11 +7,12 @@
         "topSites",
         "storage",
         "*://desk.zol.com.cn/showpic/*",
-        "*://dn-staticfile.qbox.me/font-awesome/*"
+        "*://dn-staticfile.qbox.me/font-awesome/*",
+        "management"
 
     ],
     "chrome_url_overrides": {
-        "newtab": "newtab2.html"
+        "newtab": "newtab.html"
     },
     "options_page": "options.html",
     "background": {

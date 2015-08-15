@@ -165,6 +165,8 @@ $(document).ready(function () {
     $('.act-btn').mousedown(function () {
         changeButton($(this));
     });
-
+    chrome.management.getAll(function (argument) {
+        console.log(argument);
+    })
 });
 
