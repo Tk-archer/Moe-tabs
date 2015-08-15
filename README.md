@@ -1,6 +1,2 @@
-MTab
-====
-
-I created this simple newtab extension to override the default one.
-
-Web UI devs needed, PRs welcome!
+# Moe-tabs
+chrome首页替换插件
