@@ -1,0 +1,250 @@
+From 065bf151a0a7d7e86fe41a318fb1dbba19c143dd Mon Sep 17 00:00:00 2001
+From: Fszer <616516248@qq.com>
+Date: Sun, 16 Aug 2015 23:49:38 +0800
+Subject: [PATCH] rebuild js
+
+---
+ js/functions.js | 166 +++++++++++++++++++++++++++-----------------------------
+ 1 file changed, 81 insertions(+), 85 deletions(-)
+
+diff --git a/js/functions.js b/js/functions.js
+index 1194d66..c52da93 100644
+--- a/js/functions.js
++++ b/js/functions.js
+@@ -4,48 +4,104 @@
+  * License MIT | http://opensource.org/licenses/MIT
+  */
+ 
+-setimg = function (image) {
++var model;
++$(document).ready(function () {
++    setDate(document.getElementById('date_div'));
++
++    chrome.topSites.get(function (topSitesArray) {
++        // set background
++        $('ul#topSites').append(setTopSites(topSitesArray));
++    });
++    initBgImg();
++
++    model=[$('#one'), $('#rand'), $('#nomal')];
++    var fileList;
++    $('#imgurl').change(function () {
++        fileList = document.getElementById('imgurl').files[0];
++        if (fileList.type.indexOf("image") !== -1) {
++            imgView(fileList);
++        } else {
++            fileList = "";
++        }
++
++    });
++
++
++    $('#more').mousedown(function () {
++        var option = $('#option');
++        iconInit();
++        if ("none" === option.css("display")) {
++            option.slideDown("fast");
++        } else {
++            option.slideUp("fast");
++        }
++    });
++
++    $('#up').mousedown(function () {
++        if (fileList.type.indexOf("image") !== -1) {
++            var reader = new FileReader();
++            reader.readAsDataURL(fileList);
++            reader.onload = function () {
++
++                chrome.storage.local.set({"img": reader.result}, function () {
++                    location.reload();
++                });
++
++
++            };
++        }
++    });
++
++    $('.act-btn').mousedown(function () {
++        changeButton($(this));
++    });
++
++});
++
++
++
++setImg = function (image) {
+     $('body').css({
+         'background-image': 'url(' + image + ')'
+     });
+ };
+-getimg = function () {
++defaultImg = function () {
+     var images = ["001.jpg", "002.jpg", "003.jpg", "004.jpg",
+         "005.jpg", "006.jpg", "007.jpg", "008.jpg"];
+     return "/img/bg/" +
+         images[Math.floor(Math.random() * images.length)];
+ 
+ };
+-bgimg = function () {
++initBgImg = function () {
+ 
+     var type = localStorage["type"] ? localStorage["type"] : 3;
+     if (type === '1') {
+         var res;
+         chrome.storage.local.get("img", function (result) {
+-            res = result ? result['img'] : getimg();
+-            setimg(res);
++            res = result ? result['img'] : defaultImg();
++            setImg(res);
+         });
+ 
+     } else if (type === '2') {
+ 
+-        var rande = 386 + Math.floor(Math.random() * 14);
+-        var urls = "http://desk.zol.com.cn/showpic/1920x1080_50" + rande + "_14.html";
++        var Rand = 386 + Math.floor(Math.random() * 14);
++        var urls = "http://desk.zol.com.cn/showpic/1920x1080_50" + Rand + "_14.html";
+         $.ajax({
+             url: urls,
+             success: function (data) {
+                 var er = document.createElement('div');
+                 er.innerHTML = data;
+-                setimg(er.firstChild.src);
++                setImg(er.firstChild.src);
+             },
+             error: function () {
+-                setimg(getimg());
++                setImg(defaultImg());
+             },
+             dateType: "html"
+         });
+ 
+     } else if (type === '3') {
+ 
+-        setimg(getimg());
++        setImg(defaultImg());
+ 
+     }
+ };
+@@ -68,7 +124,7 @@ my_clock = function (clock_div, today) {
+         my_clock(clock_div, today);
+     }, 10000);
+ };
+-imgview = function (file) {
++imgView = function (file) {
+     var img = window.webkitURL.createObjectURL(file);
+     var str = "<img src='" + img + "'>";
+     $('#preview').html(str);
+@@ -76,95 +132,35 @@ imgview = function (file) {
+ getActive = function () {
+     var type = localStorage["type"] ? localStorage["type"] : 3;
+ 
+-    switch (type) {
+-        case '1':
+-            return $('#one');
+-        case '2':
+-            return $('#rand');
+-        case '3':
+-            return $('#nomal');
+-        default:
+-            localStorage["type"] = type;
+-            return $('#nomal');
+-    }
++   return model[type];
+ };
+ changeButton = function (el) {
+     var act = getActive();
+-    var old = act.children("i")[0];
+-    var news = old.cloneNode();
++    var icon = '<i class=" am-icon-check-square"></i>';
++    act.children("i")[0].remove();
+     act.removeClass("am-active ");
+-    old.remove();
+     el.addClass("am-active ");
+-    el.append(news);
++    el.append(icon);
+     localStorage["type"] = el.val();
+ };
+ setTopSites = function (topSitesArray) {
+-    var sites = [],i;
++    var sites = [];
+     var length = topSitesArray.length >= 8 ? 7 : topSitesArray.length;
+-    for (i = 0; i <= length; i++) {
++    for (var i = 0; i <= length; i++) {
+         sites.push('<li><a href="' + topSitesArray[i].url +
+                     '" class="top">' + topSitesArray[i].title + '</a></li>');
+     }
+     return sites;
+ };
+-init = function () {
+-
+-    chrome.topSites.get(function (topSitesArray) {
+-        // set background
+-        bgimg();
+ 
+-        $('ul#topSites').append(setTopSites(topSitesArray));
+-
+-        var act = getActive();
+-        var icon = '<i class=" am-icon-check-square"></i>';
+-        act.addClass("am-active");
+-        act.append(icon);
+-    });
++iconInit= function () {
++    var act = getActive();
++    var icon = '<i class=" am-icon-check-square"></i>';
++    act.addClass("am-active");
++    act.append(icon);
++    window.iconInit = function () {
++        return 0;
++    }
+ };
+ 
+-init();
+-
+-$(document).ready(function () {
+-    setDate(document.getElementById('date_div'));
+-    var fileList;
+-    $('#imgurl').change(function () {
+-        fileList = document.getElementById('imgurl').files[0];
+-        if (fileList.type.indexOf("image") !== -1) {
+-            imgview(fileList);
+-        } else {
+-            fileList = "";
+-        }
+-
+-    });
+-
+-
+-    $('#more').mousedown(function () {
+-        var option = $('#option');
+-        if ("none" === option.css("display")) {
+-            option.slideDown("fast");
+-        } else {
+-            option.slideUp("fast");
+-        }
+-    });
+-
+-    $('#up').mousedown(function () {
+-        if (fileList.type.indexOf("image") !== -1) {
+-            var reader = new FileReader();
+-            reader.readAsDataURL(fileList);
+-            reader.onload = function () {
+-
+-                chrome.storage.local.set({"img": reader.result}, function () {
+-                    location.reload();
+-                });
+-
+-
+-            };
+-        }
+-    });
+-
+-    $('.act-btn').mousedown(function () {
+-        changeButton($(this));
+-    });
+-   
+-});
+ 
+-- 
+1.9.5.msysgit.1
+
