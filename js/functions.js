@@ -7,25 +7,30 @@
 var model;
 $(document).ready(function () {
     setDate(document.getElementById('date_div'));
-
-    chrome.topSites.get(function (topSitesArray) {
-        // set background
-        $('ul#topSites').append(setTopSites(topSitesArray));
-    });
+    setTopSites();
+    model=[$('#one'), $('#rand'), $('#nomal')];
     initBgImg();
 
-    model=[$('#one'), $('#rand'), $('#nomal')];
-    var fileList;
     $('#imgurl').change(function () {
-        fileList = document.getElementById('imgurl').files[0];
+        var fileList = document.getElementById('imgurl').files[0]||"";
         if (fileList.type.indexOf("image") !== -1) {
             imgView(fileList);
-        } else {
-            fileList = "";
         }
 
     });
+    $('#up').mousedown(function () {
+        var fileList = document.getElementById('imgurl').files[0]||"";
+        if (fileList.type.indexOf("image") !== -1) {
+            var reader = new FileReader();
+            reader.readAsDataURL(fileList);
+            reader.onload = function () {
+                chrome.storage.local.set({"img": reader.result}, function () {
+                    location.reload();
+                });
 
+            };
+        }
+    });
 
     $('#more').mousedown(function () {
         var option = $('#option');
@@ -37,21 +42,6 @@ $(document).ready(function () {
         }
     });
 
-    $('#up').mousedown(function () {
-        if (fileList.type.indexOf("image") !== -1) {
-            var reader = new FileReader();
-            reader.readAsDataURL(fileList);
-            reader.onload = function () {
-
-                chrome.storage.local.set({"img": reader.result}, function () {
-                    location.reload();
-                });
-
-
-            };
-        }
-    });
-
     $('.act-btn').mousedown(function () {
         changeButton($(this));
     });
@@ -59,7 +49,12 @@ $(document).ready(function () {
 });
 
 
-
+setTopSites= function () {
+    chrome.topSites.get(function (topSitesArray) {
+        // set background
+        $('ul#topSites').append(getTopSites(topSitesArray));
+    });
+};
 setImg = function (image) {
     $('body').css({
         'background-image': 'url(' + image + ')'
@@ -76,10 +71,10 @@ initBgImg = function () {
 
     var type = localStorage["type"] ? localStorage["type"] : 3;
     if (type === '1') {
-        var res;
         chrome.storage.local.get("img", function (result) {
-            res = result ? result['img'] : defaultImg();
-            setImg(res);
+            console.log(result);
+            result=result['img'] ? result['img'] : defaultImg();
+            setImg(result);
         });
 
     } else if (type === '2') {
@@ -132,7 +127,7 @@ imgView = function (file) {
 getActive = function () {
     var type = localStorage["type"] ? localStorage["type"] : 3;
 
-   return model[type];
+   return model[type-1];
 };
 changeButton = function (el) {
     var act = getActive();
@@ -143,7 +138,7 @@ changeButton = function (el) {
     el.append(icon);
     localStorage["type"] = el.val();
 };
-setTopSites = function (topSitesArray) {
+getTopSites = function (topSitesArray) {
     var sites = [];
     var length = topSitesArray.length >= 8 ? 7 : topSitesArray.length;
     for (var i = 0; i <= length; i++) {
